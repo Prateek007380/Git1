@@ -1,0 +1,5 @@
+=== STATISTICAL ANALYSIS ===
+Total Students Analyzed: 5
+----------------------------
+Correlation Coefficient (r): 0.3219
+Conclusion: Weak/None: Attendance doesn't seem to affect Marks much.
