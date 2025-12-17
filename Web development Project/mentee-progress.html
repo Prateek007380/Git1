@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Progress - Mentee</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .progress-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      .progress-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      .progress-bar {
+        background: #e0e0e0;
+        height: 25px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4b6ef5, #6a8bff);
+        border-radius: 12px;
+        transition: width 0.5s;
+      }
+      .status {
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status.ontrack {
+        background: #d4edda;
+        color: #155724;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📈 My Development Progress</h1>
+      <div>
+        <a href="mentee-dashboard.html" class="back-btn">← Dashboard</a>
+        <a href="index.html" class="logout" onclick="logout()">Logout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="hero">
+        <h2 id="menteeName">Your Progress</h2>
+        <p>Track your personal development journey</p>
+      </div>
+
+      <div class="progress-grid">
+        <div class="progress-card">
+          <h4>🌐 Web Development Skills</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 85%"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>85% Complete</span>
+            <span class="status ontrack">On Track</span>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <h4>💻 Project Completion</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 70%"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>70% Complete</span>
+            <span class="status ontrack">Good</span>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <h4>🎯 Mentor Feedback</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 92%"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>92% Positive</span>
+            <span class="status ontrack">Excellent</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          background: white;
+          padding: 2rem;
+          border-radius: 15px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          text-align: center;
+          margin: 2rem 0;
+        "
+      >
+        <h3>📊 Overall Progress: 82%</h3>
+        <button
+          style="
+            background: #4b6ef5;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+          "
+        >
+          ⬇️ Download Report
+        </button>
+      </div>
+    </div>
+
+    <!-- Same footer -->
+    <script>
+      window.onload = function () {
+        if (localStorage.getItem("userRole") !== "mentee") {
+          window.location.href = "index.html";
+        }
+        // Personalize with mentee name from signup
+        const userEmail = localStorage.getItem("userEmail");
+        const menteeNames = ["Rahul Sharma", "Priya Patel", "Amit Kumar"];
+        document.getElementById("menteeName").textContent =
+          menteeNames[Math.floor(Math.random() * 3)] + " Progress";
+      };
+      function logout() {
+        localStorage.clear();
+      }
+    </script>
+  </body>
+</html>

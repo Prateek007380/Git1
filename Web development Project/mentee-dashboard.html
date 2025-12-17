@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentee Dashboard - MentorConnect</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><i style="margin-right: 0.5rem">👩‍🎓</i>Mentee Dashboard</h1>
+      <a href="index.html" class="logout" onclick="logout()"
+        ><i style="margin-right: 0.5rem">🚪</i>Logout</a
+      >
+    </header>
+
+    <section class="hero">
+      <h2>🌟 Welcome Back!</h2>
+      <p>Continue your learning journey with personalized mentorship</p>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <div class="video-section">
+      <h3>📹 Your Learning Journey</h3>
+      <video controls>
+        <source
+          src="MentorConnect.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support video.
+      </video>
+      <p style="margin-top: 1rem; color: #666">
+        Watch your progress and session highlights
+      </p>
+    </div>
+
+    <!-- MATCHES ADMIN DASHBOARD DATA -->
+    <div class="mentor-card">
+      <div class="mentor-avatar">
+        <i style="font-size: 2.5rem">👨‍💼</i>
+      </div>
+      <div>
+        <h3>Prateek Singh</h3>
+        <p><strong>Web Development Expert</strong> | 5+ years experience</p>
+        <p><i style="margin-right: 0.5rem">⭐</i>4.9 Rating (127 reviews)</p>
+        <button
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+          "
+        >
+          💬 Message Mentor
+        </button>
+      </div>
+    </div>
+
+    <section class="features">
+      <div class="feature" onclick="window.location.href='mentee-mentors.html'">
+        <h3>👥 Connect with Mentors</h3>
+        <p>View your assigned mentor details and communicate</p>
+        <a href="mentee-mentors.html">View Mentors →</a>
+      </div>
+
+      <div
+        class="feature"
+        onclick="window.location.href='mentee-sessions.html'"
+      >
+        <h3>📅 Schedule Sessions</h3>
+        <p>Book sessions with your mentor easily</p>
+        <a href="mentee-sessions.html">Schedule Now →</a>
+      </div>
+
+      <div
+        class="feature"
+        onclick="window.location.href='mentee-progress.html'"
+      >
+        <h3>📈 Track Development</h3>
+        <p>Monitor your personal growth and achievements</p>
+        <a href="mentee-progress.html">My Progress →</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>📧 Contact</h4>
+          <p>support@mentorconnect.com</p>
+          <p>+91 98765 43210</p>
+        </div>
+        <div class="footer-section">
+          <h4>📍 Location</h4>
+          <p>Koneru Lakshmaiah University</p>
+          <p>Vaddeswaram, Andhra Pradesh</p>
+        </div>
+        <div class="footer-section">
+          <h4>🌐 Follow Us</h4>
+          <a href="https://www.linkedin.com/premium/products/?upsellOrderOrigin=learning_guest_upsell&utype=learning">LinkedIn</a>
+          <a href="https://github.com/">GitHub</a>
+          <a href="https://www.youtube.com/">YouTube</a>
+        </div>
+      </div>
+      <p>&copy; 2025 MentorConnect </p>
+    </footer>
+
+    <script>
+      window.onload = function () {
+        const userRole = localStorage.getItem("userRole");
+        if (userRole !== "mentee") {
+          window.location.href = "index.html";
+        }
+      };
+
+      function logout() {
+        localStorage.clear();
+      }
+    </script>
+  </body>
+</html>

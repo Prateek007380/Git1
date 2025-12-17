@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentorship Platform | Sign In</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        height: 100vh;
+        background: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d")
+          no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 0;
+      }
+      .signin-container {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 40px;
+        width: 350px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        color: #fff;
+      }
+      .signin-container h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .signin-container p {
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+        display: block;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+      }
+      .signin-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #764ba2;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+      }
+      .signin-btn:hover {
+        background: #f1f1f1;
+      }
+      .extra-links {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 13px;
+      }
+      .extra-links a {
+        color: #fff;
+        text-decoration: none;
+        opacity: 0.9;
+        cursor: pointer;
+      }
+      .extra-links a:hover {
+        text-decoration: underline;
+      }
+      .success-message {
+        background: rgba(76, 175, 80, 0.9);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        display: none;
+        text-align: center;
+      }
+      @media (max-width: 400px) {
+        .signin-container {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signin-container">
+      <h2>Online Mentorship Platform</h2>
+      <p>Connect • Learn • Grow with Expert Mentors Online</p>
+
+      <form id="signinForm">
+        <div class="form-group">
+          <label>Login As</label>
+          <select id="roleSelect" required>
+            <option value="" disabled selected>Select role</option>
+            <option value="mentee">Mentee</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button class="signin-btn" type="submit">Sign In</button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        Password sent to your email: <strong>ph@project</strong>
+      </div>
+
+      <div class="extra-links">
+        <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </div>
+
+    <script>
+      // Corrected button syntax and added functionality
+      document
+        .getElementById("signinForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const role = document.getElementById("roleSelect").value;
+          const email = document.getElementById("emailInput").value;
+          const password = document.getElementById("passwordInput").value;
+
+          // Fixed password validation
+          if (password === "ph@project" && role && email) {
+            localStorage.setItem("userRole", role);
+            localStorage.setItem("userEmail", email);
+
+            if (role === "admin") {
+              window.location.href = "admin-dashboard.html";
+            } else if (role === "mentee") {
+              window.location.href = "mentee-dashboard.html";
+            }
+          } else {
+            alert("Password must be: ph@project");
+          }
+        });
+
+      function forgotPassword() {
+        document.getElementById("successMessage").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("successMessage").style.display = "none";
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Tracking - Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #f9f9f9;
+      }
+      header {
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .back-btn,
+      .logout {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        margin-left: 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+      .hero {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .progress-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+      }
+      .progress-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      .progress-card h4 {
+        color: #4b6ef5;
+        margin-bottom: 1rem;
+      }
+      .progress-bar {
+        background: #e0e0e0;
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4b6ef5, #6a8bff);
+        border-radius: 10px;
+      }
+      .status {
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status.ontrack {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      footer {
+        background: #4b6ef5;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .progress-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📈 Progress Tracking</h1>
+      <div>
+        <a href="admin-dashboard.html" class="back-btn">← Back</a>
+        <a href="index.html" class="logout" onclick="logout()">Logout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="hero">
+        <h2>Monitor Mentee Development</h2>
+        <p>Track progress, generate reports, and ensure growth</p>
+      </div>
+
+      <div class="progress-grid">
+        <div class="progress-card">
+          <h4>Rahul Sharma</h4>
+          <div style="margin-bottom: 1rem">Web Development Skills</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 85%"></div>
+          </div>
+          <span>85% Complete</span> <span class="status ontrack">On Track</span>
+        </div>
+
+        <div class="progress-card">
+          <h4>Priya Patel</h4>
+          <div style="margin-bottom: 1rem">Data Science Mastery</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 65%"></div>
+          </div>
+          <span>65% Complete</span> <span class="status ontrack">On Track</span>
+        </div>
+
+        <div class="progress-card">
+          <h4>Amit Kumar</h4>
+          <div style="margin-bottom: 1rem">Java Programming</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 92%"></div>
+          </div>
+          <span>92% Complete</span>
+          <span class="status ontrack">Excellent</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 1rem;
+        "
+      >
+        <div><strong>📧</strong> support@mentorconnect.com</div>
+        <div><strong>📱</strong> +91 98765 43210</div>
+        <div><strong>🏫</strong> KLU University</div>
+      </div>
+      <p>&copy; 2025 MentorConnect </p>
+    </footer>
+
+    <script>
+      window.onload = function () {
+        if (localStorage.getItem("userRole") !== "admin") {
+          window.location.href = "index.html";
+        }
+      };
+
+      function logout() {
+        localStorage.clear();
+      }
+    </script>
+  </body>
+</html>

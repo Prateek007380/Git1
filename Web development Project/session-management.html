@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Management - Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Same styles as mentor-matching.html */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #f9f9f9;
+      }
+      header {
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .back-btn,
+      .logout {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        margin-left: 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+      .hero {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .session-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .form-row select,
+      .form-row input {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+      }
+      button {
+        background: #4b6ef5;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .sessions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+      }
+      .session-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      .status {
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status.approved {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status.pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      footer {
+        background: #4b6ef5;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📅 Session Management</h1>
+      <div>
+        <a href="admin-dashboard.html" class="back-btn">← Back</a>
+        <a href="index.html" class="logout" onclick="logout()">Logout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="hero">
+        <h2>Manage All Sessions</h2>
+        <p>Schedule, approve, and monitor mentorship sessions</p>
+      </div>
+
+      <div class="session-form">
+        <h3>➕ Schedule New Session</h3>
+        <div class="form-row">
+          <select id="menteeSelect">
+            <option value="">Select Mentee</option>
+            <option value="Rahul Sharma">Rahul Sharma</option>
+            <option value="Priya Patel">Priya Patel</option>
+          </select>
+          <input type="date" id="sessionDate" />
+          <input type="time" id="sessionTime" />
+        </div>
+        <button onclick="scheduleSession()">📅 Schedule Session</button>
+      </div>
+
+      <div class="sessions-grid">
+        <div class="session-card">
+          <h4>Rahul Sharma - Web Dev</h4>
+          <p>Tomorrow 3:00 PM - 4:00 PM</p>
+          <span class="status approved">Approved</span>
+        </div>
+        <div class="session-card">
+          <h4>Priya Patel - Data Science</h4>
+          <p>Friday 5:30 PM - 6:30 PM</p>
+          <span class="status pending">Pending</span>
+          <button
+            style="
+              background: #28a745;
+              color: white;
+              border: none;
+              padding: 0.5rem 1rem;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-top: 1rem;
+            "
+          >
+            Approve
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>&copy; 2025 MentorConnect</footer>
+
+    <script>
+      function scheduleSession() {
+        const mentee = document.getElementById("menteeSelect").value;
+        const date = document.getElementById("sessionDate").value;
+        const time = document.getElementById("sessionTime").value;
+        if (mentee && date && time) {
+          alert(`✅ Session scheduled for ${mentee} on ${date} at ${time}`);
+        }
+      }
+
+      // Role protection and logout same as above
+    </script>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentor Matching - Admin</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f9f9f9;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .back-btn,
+      .logout {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        margin-left: 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+
+      /* HERO / PROFILE SECTION */
+      .hero {
+        text-align: center;
+        padding: 2.5rem;
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .profile-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        margin-bottom: 1rem;
+      }
+
+      .hero h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+
+      /* MATCH FORM */
+      .matching-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-row select {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      button {
+        background: #4b6ef5;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      /* MATCH CARDS */
+      .matches-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .match-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #4b6ef5;
+      }
+
+      .match-card h4 {
+        color: #4b6ef5;
+        margin-bottom: 0.5rem;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+
+      .status.matched {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #4b6ef5;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>🔍 Mentor Matching</h1>
+      <div>
+        <a href="admin-dashboard.html" class="back-btn">← Back</a>
+        <a href="index.html" class="logout" onclick="logout()">Logout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- PROFILE / HERO -->
+      <div class="hero">
+        <img
+          src="WhatsApp Image 2025-12-15 at 09.52.51_ca80ec14.jpg"
+          alt="Vara Prasad"
+          class="profile-img"
+        />
+        <h2>Vara Prasad</h2>
+        <p>Admin – Mentor Matching System</p>
+      </div>
+
+      <!-- MATCH FORM -->
+      <div class="matching-form">
+        <h3>🔗 Create New Match</h3>
+        <div class="form-row">
+          <select id="menteeSelect">
+            <option value="">Select Mentee</option>
+            <option value="Rahul Sharma">Rahul Sharma</option>
+            <option value="Priya Patel">Priya Patel</option>
+            <option value="Amit Kumar">Amit Kumar</option>
+          </select>
+
+          <select id="mentorSelect">
+            <option value="">Select Mentor</option>
+            <option value="Prateek Singh">Prateek Singh</option>
+            <option value="Raj Kumar">Raj Kumar</option>
+            <option value="Neha Gupta">Neha Gupta</option>
+          </select>
+        </div>
+
+        <button onclick="createMatch()">✅ Create Match</button>
+      </div>
+
+      <!-- MATCH LIST -->
+      <div class="matches-grid">
+        <div class="match-card">
+          <h4>Rahul Sharma ↔ Prateek Singh</h4>
+          <p><strong>Topic:</strong> Web Development</p>
+          <span class="status matched">Active</span>
+        </div>
+
+        <div class="match-card">
+          <h4>Priya Patel ↔ Raj Kumar</h4>
+          <p><strong>Topic:</strong> Data Science</p>
+          <span class="status">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>📧 support@mentorconnect.com | 📱 +91 98765 43210 | 🏫 KLU University</p>
+      <p>&copy; 2025 MentorConnect </p>
+    </footer>
+
+    <script>
+      function createMatch() {
+        const mentee = document.getElementById("menteeSelect").value;
+        const mentor = document.getElementById("mentorSelect").value;
+
+        if (mentee && mentor) {
+          alert(`✅ Match created: ${mentee} ↔ ${mentor}`);
+        } else {
+          alert("Please select both mentee and mentor");
+        }
+      }
+
+      window.onload = function () {
+        if (localStorage.getItem("userRole") !== "admin") {
+          window.location.href = "index.html";
+        }
+      };
+
+      function logout() {
+        localStorage.clear();
+      }
+    </script>
+  </body>
+</html>

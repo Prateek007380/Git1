@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - MentorConnect</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #f9f9f9;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        font-size: 1.8rem;
+        margin: 0;
+      }
+      .logout {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #4b6ef5, #6a8bff);
+        color: white;
+      }
+      .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .video-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin: 2rem auto;
+        max-width: 8000px;
+        text-align: center;
+      }
+      video {
+        max-width: 200%;
+        height: 350px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 3rem 2rem;
+        background: #fff;
+      }
+      .feature {
+        flex: 1 1 300px;
+        margin: 1rem;
+        padding: 2rem;
+        background: #f0f4ff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      .feature h3 {
+        margin: 0 0 1rem 0;
+        color: #4b6ef5;
+        font-size: 1.5rem;
+      }
+      .feature p {
+        margin-bottom: 1.5rem;
+      }
+      .feature a {
+        background: #4b6ef5;
+        color: white;
+        padding: 0.8rem 2rem;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      footer {
+        background: #4b6ef5;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+      }
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+      }
+      .footer-section h4 {
+        margin-bottom: 1rem;
+      }
+      .footer-section p,
+      .footer-section a {
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+      }
+      .footer-section a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .features {
+          flex-direction: column;
+          align-items: center;
+        }
+        .video-section {
+          margin: 1rem;
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><i style="margin-right: 0.5rem">👨‍💼</i>Admin Dashboard</h1>
+      <a href="index.html" class="logout" onclick="logout()"
+        ><i style="margin-right: 0.5rem">🚪</i>Logout</a
+      >
+    </header>
+
+    <section class="hero">
+      <h2>🎯 Admin Control Panel</h2>
+      <p>
+        Manage mentor-mentee matching, sessions, and track progress effectively
+      </p>
+    </section>
+
+    <!-- VIDEO SECTION MOVED HERE -->
+    <div class="video-section">
+      <h3>📹 Platform Demo Video</h3>
+      <video controls>
+        <source
+          src="MentorConnect.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support video.
+      </video>
+      <p style="margin-top: 1rem; color: #666">
+        Watch how our FEDF-PS46 platform works
+      </p>
+    </div>
+
+    <section class="features">
+      <div
+        class="feature"
+        onclick="window.location.href='mentor-matching.html'"
+      >
+        <h3>🔍 Match Mentors with Mentees</h3>
+        <p>Pair mentees with perfect mentors based on skills and goals</p>
+        <a href="new.html">Open Matching →</a>
+      </div>
+
+      <div
+        class="feature"
+        onclick="window.location.href='session-management.html'"
+      >
+        <h3>📅 Manage Mentorship Sessions</h3>
+        <p>Schedule, approve, and manage all coaching sessions</p>
+        <a href="session-management.html">Manage Sessions →</a>
+      </div>
+
+      <div
+        class="feature"
+        onclick="window.location.href='progress-tracking.html'"
+      >
+        <h3>📈 Track Progress</h3>
+        <p>Monitor mentee development and generate reports</p>
+        <a href="progress-tracking.html">Track Progress →</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>📧 Contact</h4>
+          <p>support@mentorconnect.com</p>
+          <p>+91 98765 43210</p>
+        </div>
+        <div class="footer-section">
+          <h4>📍 Location</h4>
+          <p>Koneru Lakshmaiah University</p>
+          <p>Vaddeswaram, Andhra Pradesh</p>
+        </div>
+        <div class="footer-section">
+          <h4>🌐 Follow Us</h4>
+          <a href="https://www.linkedin.com/premium/products/?upsellOrderOrigin=learning_guest_upsell&utype=learning">LinkedIn</a>
+          <a href="https://github.com/">GitHub</a>
+          <a href="https://www.youtube.com/">YouTube</a>
+        </div>
+      </div>
+      <p>&copy; 2025 MentorConnect </p>
+    </footer>
+
+    <script>
+      // Role check
+      window.onload = function () {
+        const userRole = localStorage.getItem("userRole");
+        if (userRole !== "admin") {
+          window.location.href = "index.html";
+        }
+      };
+
+      function logout() {
+        localStorage.clear();
+      }
+    </script>
+  </body>
+</html>

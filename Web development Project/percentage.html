@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Progress Tracker</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url(photo.jpg);
+  background-size: cover;
+}
+
+/* CARD */
+#progress-tracking {
+  width: 450px;
+  margin: 50px auto;
+  background: rgba(255,255,255,0.95);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+h2 {
+  text-align: center;
+  color: #4b6ef5;
+}
+
+/* GOALS */
+.goal {
+  background: #eef2ff;
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.goal span {
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.percent {
+  text-align: right;
+  font-size: 14px;
+}
+
+/* OVERALL */
+.overall {
+  margin-top: 20px;
+}
+
+.progress {
+  width: 100%;
+  background: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 20px;
+  background: #4b6ef5;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="progress-tracking">
+  <h2>Progress Tracking</h2>
+
+  <input type="text" id="new-goal" placeholder="Add Goal">
+  <button onclick="addGoal()">Add</button>
+
+  <div id="goal-list">
+
+    <!-- Default Goals -->
+    <div class="goal">
+      <span>Cyber Security</span>
+      <input type="range" min="0" max="100" value="40" oninput="updateProgress()">
+      <div class="percent">40%</div>
+    </div>
+
+    <div class="goal">
+      <span>Web Development</span>
+      <input type="range" min="0" max="100" value="60" oninput="updateProgress()">
+      <div class="percent">60%</div>
+    </div>
+
+    <div class="goal">
+      <span>IOT</span>
+      <input type="range" min="0" max="100" value="30" oninput="updateProgress()">
+      <div class="percent">30%</div>
+    </div>
+
+    <div class="goal">
+      <span>Ethical Hacking</span>
+      <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+      <div class="percent">50%</div>
+    </div>
+
+    <div class="goal">
+      <span>Data Scientist</span>
+      <input type="range" min="0" max="100" value="70" oninput="updateProgress()">
+      <div class="percent">70%</div>
+    </div>
+
+  </div>
+
+  <!-- OVERALL PROGRESS -->
+  <div class="overall">
+    <h3>Overall Progress</h3>
+    <div class="progress">
+      <div class="progress-bar" id="overall-bar">0%</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function addGoal() {
+  const text = document.getElementById("new-goal").value.trim();
+  if (!text) return alert("Enter a goal");
+
+  const goal = document.createElement("div");
+  goal.className = "goal";
+  goal.innerHTML = `
+    <span>${text}</span>
+    <input type="range" min="0" max="100" value="0" oninput="updateProgress()">
+    <div class="percent">0%</div>
+  `;
+
+  document.getElementById("goal-list").appendChild(goal);
+  document.getElementById("new-goal").value = "";
+  updateProgress();
+}
+
+function updateProgress() {
+  const goals = document.querySelectorAll(".goal");
+  let total = 0;
+
+  goals.forEach(goal => {
+    const slider = goal.querySelector("input");
+    const percent = goal.querySelector(".percent");
+    percent.textContent = slider.value + "%";
+    total += parseInt(slider.value);
+  });
+
+  const overall = goals.length === 0 ? 0 : Math.round(total / goals.length);
+  const bar = document.getElementById("overall-bar");
+  bar.style.width = overall + "%";
+  bar.textContent = overall + "%";
+}
+
+updateProgress();
+</script>
+
+</body>
+</html>

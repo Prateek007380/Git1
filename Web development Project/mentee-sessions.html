@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Sessions - Mentee</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .sessions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      .session-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      .status {
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status.scheduled {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status.upcoming {
+        background: #fff3cd;
+        color: #856404;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📅 Schedule Sessions</h1>
+      <div>
+        <a href="mentee-dashboard.html" class="back-btn">← Dashboard</a>
+        <a href="index.html" class="logout" onclick="logout()">Logout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="hero">
+        <h2>Book Sessions with Mentors</h2>
+        <p>Schedule your next mentorship session</p>
+      </div>
+
+      <div
+        class="form-row"
+        style="
+          background: white;
+          padding: 2rem;
+          border-radius: 15px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          margin-bottom: 2rem;
+        "
+      >
+        <select id="mentorSelect">
+          <option value="">Select Mentor</option>
+          <option value="Prateek Singh">Prateek Singh (Web Dev)</option>
+          <option value="Raj Kumar">Raj Kumar (Data Science)</option>
+          <option value="Neha Gupta">Neha Gupta (Java)</option>
+        </select>
+        <input type="date" id="sessionDate" />
+        <input type="time" id="sessionTime" />
+        <button onclick="bookSession()" style="flex: 0 0 auto">
+          📅 Book Session
+        </button>
+      </div>
+
+      <div class="sessions-grid">
+        <div class="session-card">
+          <h4>✅ Web Development - Prateek Singh</h4>
+          <p>Completed: Dec 15, 2025 | 3:00 PM - 4:00 PM</p>
+          <span class="status scheduled">Completed</span>
+        </div>
+
+        <div class="session-card">
+          <h4>⏰ Project Review - Prateek Singh</h4>
+          <p>Upcoming: Dec 20, 2025 | 5:30 PM - 6:30 PM</p>
+          <span class="status upcoming">Upcoming</span>
+          <button
+            style="
+              background: #28a745;
+              color: white;
+              border: none;
+              padding: 0.5rem 1rem;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-top: 1rem;
+            "
+          >
+            Join Session
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Same footer -->
+    <script>
+      function bookSession() {
+        const mentor = document.getElementById("mentorSelect").value;
+        const date = document.getElementById("sessionDate").value;
+        const time = document.getElementById("sessionTime").value;
+        if (mentor && date && time) {
+          alert(`✅ Session booked with ${mentor} on ${date} at ${time}`);
+        } else {
+          alert("Please fill all fields");
+        }
+      }
+      // Role check + logout
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Mentors - Mentee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+    
+    /* UPDATED: Better spacing for mentor grid */
+    .mentors-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); 
+      gap: 2.5rem; /* INCREASED spacing between cards */
+      margin: 3rem 0; 
+      padding: 0 1rem;
+    }
+    
+    .mentor-card { 
+      background: white; 
+      padding: 2.5rem; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12); 
+      border-left: 6px solid #4b6ef5; 
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mentor-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4b6ef5, #6a8bff);
+    }
+    
+    .mentor-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+    
+    .mentor-avatar { 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      background: linear-gradient(135deg, #4b6ef5, #6a8bff); 
+      color: white; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin: 0 auto 1.5rem; 
+      font-weight: 700; 
+      font-size: 1.3rem;
+      box-shadow: 0 5px 15px rgba(75, 110, 245, 0.4);
+    }
+    
+    .mentor-card h3 { 
+      color: #4b6ef5; 
+      margin-bottom: 1rem; 
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    
+    .mentor-info p { 
+      margin-bottom: 0.8rem; 
+      color: #555; 
+      line-height: 1.5;
+    }
+    
+    .mentor-stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #f8f9ff;
+      border-radius: 12px;
+    }
+    
+    .message-btn { 
+      background: linear-gradient(135deg, #4b6ef5, #6a8bff) !important; 
+      color: white !important; 
+      border: none; 
+      padding: 1rem 2rem; 
+      border-radius: 30px; 
+      cursor: pointer; 
+      width: 100%; 
+      font-size: 16px; 
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(75, 110, 245, 0.3);
+    }
+    
+    .message-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(75, 110, 245, 0.4);
+    }
+    
+    .message-btn.success {
+      background: linear-gradient(135deg, #28a745, #20c997) !important;
+      cursor: default;
+    }
+    
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      display: none;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 768px) { 
+      .mentors-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👥 Connect with Mentors</h1>
+    <div>
+      <a href="mentee-dashboard.html" class="back-btn">← Dashboard</a>
+      <a href="index.html" class="logout" onclick="logout()">Logout</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <h2>All Available Mentors</h2>
+      <p>Connect with expert mentors matching your learning goals</p>
+    </div>
+
+    <div class="mentors-grid">
+      <!-- Mentor 1: Prateek Singh (Matches Admin Dashboard) -->
+      <div class="mentor-card">
+        <div class="mentor-avatar">PS</div>
+        <h3>Prateek Singh</h3>
+        <div class="mentor-info">
+          <p><strong>🎯 Expertise:</strong> Web Development, JavaScript, Full-Stack</p>
+          <p><strong>📚 Experience:</strong> 5+ years</p>
+          <div class="mentor-stats">
+            <span>⭐ 4.9 Rating</span>
+            <span>127 Reviews</span>
+          </div>
+          <p><strong>🔗 Current Match:</strong> Rahul Sharma (Active)</p>
+        </div>
+        <button class="message-btn" onclick="sendMessage('Prateek Singh')">
+          💬 Send Request
+        </button>
+        <div class="success-message" id="msg1">✅ Request sent to Prateek Singh!</div>
+      </div>
+
+      <!-- Mentor 2: Raj Kumar (Matches Admin Dashboard) -->
+      <div class="mentor-card">
+        <div class="mentor-avatar">RK</div>
+        <h3>Raj Kumar</h3>
+        <div class="mentor-info">
+          <p><strong>🎯 Expertise:</strong> Data Science, Python, Machine Learning</p>
+          <p><strong>📚 Experience:</strong> 4+ years</p>
+          <div class="mentor-stats">
+            <span> ⭐ 4.7 Rating</span>
+            <span>89 Reviews</span>
+          </div>
+          <p><strong>🔗 Current Match:</strong> Priya Patel (Pending)</p>
+        </div>
+        <button class="message-btn" onclick="sendMessage('Raj Kumar')">
+          💬 Send Request
+        </button>
+        <div class="success-message" id="
